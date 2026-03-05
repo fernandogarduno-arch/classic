@@ -1,7 +1,7 @@
 import { Outlet, NavLink, useNavigate } from 'react-router-dom'
 import { useAppAuth } from './useAppAuth'
 import { Home, Calendar, BookOpen, User } from 'lucide-react'
-import '../app/appStyles.css'
+import './appStyles.css'
 
 const NAV = [
   { to: '/app',          icon: Home,      label: 'Inicio',   end: true },
