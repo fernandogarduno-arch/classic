@@ -1,0 +1,106 @@
+/* ── App móvil para usuarias ─────────────────── */
+.app-shell {
+  max-width: 430px;
+  margin: 0 auto;
+  min-height: 100dvh;
+  background: #FAFAF9;
+  position: relative;
+  font-family: 'DM Sans', system-ui, sans-serif;
+}
+
+.app-card {
+  background: white;
+  border-radius: 16px;
+  border: 1px solid #EEEDE9;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.04);
+}
+
+.app-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: 'DM Sans', system-ui, sans-serif;
+}
+.app-btn-primary {
+  background: #3E6335;
+  color: white;
+  box-shadow: 0 2px 8px rgba(62,99,53,0.25);
+}
+.app-btn-primary:hover  { background: #4F7C44; }
+.app-btn-primary:active { transform: scale(0.98); }
+.app-btn-ghost {
+  background: transparent;
+  color: #6B7280;
+  border: 1px solid #E5E5E0;
+}
+.app-btn-ghost:hover { background: #F5F5F2; }
+
+.app-input {
+  width: 100%;
+  border: 1.5px solid #E5E5E0;
+  border-radius: 10px;
+  padding: 11px 14px;
+  font-size: 15px;
+  background: white;
+  color: #111;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  font-family: 'DM Sans', system-ui, sans-serif;
+}
+.app-input:focus {
+  border-color: #6B9460;
+  box-shadow: 0 0 0 3px rgba(107,148,96,0.1);
+}
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 430px;
+  background: white;
+  border-top: 1px solid #EEEDE9;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 8px 0 env(safe-area-inset-bottom, 8px);
+  z-index: 40;
+}
+
+.bottom-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 6px 4px;
+  cursor: pointer;
+  transition: color 0.15s;
+  text-decoration: none;
+  border: none;
+  background: none;
+}
+.bottom-nav-item span {
+  font-size: 10px;
+  font-weight: 500;
+  font-family: 'DM Sans', system-ui, sans-serif;
+}
+.bottom-nav-item.active { color: #3E6335; }
+.bottom-nav-item:not(.active) { color: #C4C4BC; }
+
+.clase-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 500;
+  font-family: 'DM Sans', system-ui, sans-serif;
+}
