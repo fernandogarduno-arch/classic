@@ -15,9 +15,9 @@ import Pagos from './pages/Pagos'
 function ProtectedRoute({ children }) {
   const { session } = useAuth()
   if (session === undefined) return (
-    <div className="h-screen flex items-center justify-center bg-cs-cream">
+    <div className="h-screen flex items-center justify-center bg-cs-surface-2">
       <div className="flex flex-col items-center gap-3">
-        <div className="w-8 h-8 border-2 border-cs-gold border-t-transparent rounded-full animate-spin" />
+        <div className="w-8 h-8 border-2 border-cs-olive border-t-transparent rounded-full animate-spin" />
         <p className="text-sm text-cs-muted font-body">Cargando Classic Studio…</p>
       </div>
     </div>

@@ -124,7 +124,7 @@ export default function Instructoras() {
                     <div>
                       <p className="font-semibold text-cs-charcoal">{inst.nombre} {inst.apellidos}</p>
                       <div className="flex items-center gap-1 mt-0.5">
-                        <Star size={11} fill="#C49A2A" stroke="none" />
+                        <Star size={11} fill="#4F7C44" stroke="none" />
                         <span className="text-xs text-cs-muted">{inst.rating_promedio ?? '5.0'}</span>
                       </div>
                     </div>
@@ -226,11 +226,11 @@ export default function Instructoras() {
                     return (
                       <label key={d.value}
                         className={"flex items-center gap-2 p-2 rounded-lg border cursor-pointer transition-all text-xs " +
-                          (sel ? 'border-cs-gold bg-amber-50 text-cs-charcoal' : 'border-cs-border text-cs-muted hover:border-cs-gold')}>
+                          (sel ? 'border-cs-olive bg-cs-olive-bg text-cs-charcoal' : 'border-cs-border text-cs-muted hover:border-cs-olive')}>
                         <input type="checkbox" className="hidden"
                           checked={sel} onChange={() => toggleDisciplina(d.value)} />
                         <span className={"w-3 h-3 rounded border flex items-center justify-center shrink-0 " +
-                          (sel ? 'bg-cs-gold border-cs-gold' : 'border-gray-300')}>
+                          (sel ? 'bg-cs-olive border-cs-olive' : 'border-gray-300')}>
                           {sel && <span className="text-white text-[8px] font-bold">✓</span>}
                         </span>
                         {d.label}
@@ -246,7 +246,7 @@ export default function Instructoras() {
                   {COLORES.map(c => (
                     <button key={c} onClick={() => setForm(f => ({ ...f, color_hex: c }))}
                       className={"w-8 h-8 rounded-full border-2 transition-all " +
-                        (form.color_hex === c ? 'border-cs-charcoal scale-110' : 'border-transparent')}
+                        (form.color_hex === c ? 'border-cs-ink scale-110' : 'border-transparent')}
                       style={{ backgroundColor: c }} />
                   ))}
                 </div>

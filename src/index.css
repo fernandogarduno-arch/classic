@@ -3,62 +3,169 @@
 @tailwind utilities;
 
 @layer base {
-  * { box-sizing: border-box; }
+  *, *::before, *::after { box-sizing: border-box; }
   html { font-family: 'DM Sans', system-ui, sans-serif; }
   body {
-    background-color: #F2F4F3;
-    color: #1C2526;
+    background-color: #F5F7F5;
+    color: #111827;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
-  h1, h2, h3, h4 {
+  h1, h2, h3, h4, h5 {
     font-family: 'Cormorant Garamond', Georgia, serif;
     font-weight: 600;
+    letter-spacing: -0.01em;
   }
 }
 
 @layer components {
+
+  /* ─── Sidebar ──────────────────────────────────── */
   .sidebar-link {
-    @apply flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-150;
-    color: #9CA8A1;
+    @apply flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-150 relative;
+    color: rgba(226,232,223,0.55);
   }
   .sidebar-link:hover {
-    background-color: #242444;
-    color: #E8EDE9;
+    background-color: rgba(255,255,255,0.06);
+    color: rgba(226,232,223,0.9);
   }
   .sidebar-link.active {
-    background-color: #4A6741;
-    color: #FFFFFF;
+    background-color: rgba(79,124,68,0.18);
+    color: #A8C89F;
   }
+  .sidebar-link.active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 60%;
+    background-color: #6B9460;
+    border-radius: 0 2px 2px 0;
+  }
+
+  /* ─── Cards ──────────────────────────────────────── */
   .card {
-    @apply bg-white rounded-2xl border border-cs-border shadow-sm;
+    background: #FFFFFF;
+    border: 1px solid #E2E8E2;
+    border-radius: 14px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.05);
+  }
+  .card-hover {
+    @apply card transition-all duration-200;
+  }
+  .card-hover:hover {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05), 0 8px 24px rgba(0,0,0,0.08);
+    transform: translateY(-1px);
   }
   .kpi-card {
-    @apply card p-5;
+    @apply card p-6;
   }
+
+  /* ─── Buttons ─────────────────────────────────── */
   .btn-primary {
-    @apply bg-cs-olive text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-cs-olive-lt transition-all flex items-center gap-2;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    background-color: #3E6335;
+    color: #FFFFFF;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.15s, box-shadow 0.15s, transform 0.1s;
+    box-shadow: 0 1px 3px rgba(62,99,53,0.3);
   }
+  .btn-primary:hover {
+    background-color: #4F7C44;
+    box-shadow: 0 2px 6px rgba(62,99,53,0.35);
+  }
+  .btn-primary:active { transform: scale(0.98); }
+
   .btn-ghost {
-    @apply border border-cs-border text-cs-charcoal px-4 py-2 rounded-lg text-sm font-medium hover:bg-cs-cream-dk transition-all flex items-center gap-2;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    background: transparent;
+    color: #4B5563;
+    border: 1px solid #E2E8E2;
+    cursor: pointer;
+    transition: all 0.15s;
   }
+  .btn-ghost:hover {
+    background-color: #F0F4F1;
+    border-color: #C8D4C8;
+    color: #1C2A22;
+  }
+
+  /* ─── Badges ─────────────────────────────────── */
   .badge {
-    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 9px;
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
   }
-  .badge-green  { @apply badge bg-emerald-100 text-emerald-700; }
-  .badge-yellow { @apply badge bg-amber-100 text-amber-700; }
-  .badge-red    { @apply badge bg-red-100 text-red-700; }
-  .badge-blue   { @apply badge bg-blue-100 text-blue-700; }
-  .badge-gray   { @apply badge bg-gray-100 text-gray-600; }
-  .badge-gold   { @apply badge bg-cs-olive-bg text-cs-olive border border-cs-olive/20; }
+  .badge-green  { background: #DCFCE7; color: #166534; }
+  .badge-yellow { background: #FEF9C3; color: #854D0E; }
+  .badge-red    { background: #FEE2E2; color: #991B1B; }
+  .badge-blue   { background: #DBEAFE; color: #1E40AF; }
+  .badge-gray   { background: #F3F4F6; color: #6B7280; }
+  .badge-gold   { background: #EBF2E9; color: #3E6335; border: 1px solid #C5D9C0; }
+  .badge-orange { background: #FFF7ED; color: #9A3412; }
+
+  /* ─── Form inputs ────────────────────────────── */
   .input {
-    @apply w-full border border-cs-border rounded-lg px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-cs-olive focus:border-transparent;
+    width: 100%;
+    border: 1px solid #E2E8E2;
+    border-radius: 8px;
+    padding: 9px 12px;
+    font-size: 13.5px;
+    background: #FFFFFF;
+    color: #111827;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    outline: none;
+    font-family: 'DM Sans', system-ui, sans-serif;
   }
+  .input:focus {
+    border-color: #6B9460;
+    box-shadow: 0 0 0 3px rgba(107,148,96,0.12);
+  }
+  .input::placeholder { color: #9CA3AF; }
+
+  /* ─── Table ──────────────────────────────────── */
   .table-row {
-    @apply border-b border-cs-border hover:bg-cs-cream transition-colors;
+    border-bottom: 1px solid #F0F4F1;
+    transition: background-color 0.1s;
+  }
+  .table-row:hover { background-color: #F5F7F5; }
+  .table-row:last-child { border-bottom: none; }
+
+  /* ─── Labels ─────────────────────────────────── */
+  .label-caps {
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: #9CA3AF;
   }
 }
 
-::-webkit-scrollbar { width: 5px; }
+/* ─── Scrollbar ──────────────────────────────── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: #DDE3DE; border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: #4A6741; }
+::-webkit-scrollbar-thumb { background: #C8D4C8; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #4F7C44; }
+
+/* ─── Transitions globales ───────────────────── */
+* { transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); }

@@ -12,7 +12,7 @@ import {
   DollarSign, Activity, ArrowRight, Zap
 } from 'lucide-react'
 
-const RIESGO_COLOR = { bajo: '#5E8A6E', medio: '#C49A2A', alto: '#E07A3A', critico: '#C25C6E' }
+const RIESGO_COLOR = { bajo: '#3E6335', medio: '#4F7C44', alto: '#E07A3A', critico: '#B34C60' }
 const RIESGO_BADGE = {
   bajo:    'badge-green',
   medio:   'badge-yellow',
@@ -90,7 +90,7 @@ export default function Dashboard() {
 
   if (loading) return (
     <div className="p-6 lg:p-8 flex items-center justify-center h-64">
-      <div className="w-8 h-8 border-2 border-cs-gold border-t-transparent rounded-full animate-spin" />
+      <div className="w-8 h-8 border-2 border-cs-olive border-t-transparent rounded-full animate-spin" />
     </div>
   )
 
@@ -137,15 +137,15 @@ export default function Dashboard() {
             <AreaChart data={mrrData}>
               <defs>
                 <linearGradient id="mrrGrad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%"  stopColor="#C49A2A" stopOpacity={0.2} />
-                  <stop offset="95%" stopColor="#C49A2A" stopOpacity={0} />
+                  <stop offset="5%"  stopColor="#3E6335" stopOpacity={0.2} />
+                  <stop offset="95%" stopColor="#3E6335" stopOpacity={0} />
                 </linearGradient>
               </defs>
-              <CartesianGrid strokeDasharray="3 3" stroke="#E2D9CC" />
-              <XAxis dataKey="mes" tick={{ fontSize: 11, fill: '#8C8C8C' }} axisLine={false} tickLine={false} />
-              <YAxis tickFormatter={v => `$${v/1000}k`} tick={{ fontSize: 11, fill: '#8C8C8C' }} axisLine={false} tickLine={false} />
+              <CartesianGrid strokeDasharray="3 3" stroke="#E2E8E2" />
+              <XAxis dataKey="mes" tick={{ fontSize: 11, fill: '#9CA3AF' }} axisLine={false} tickLine={false} />
+              <YAxis tickFormatter={v => `$${v/1000}k`} tick={{ fontSize: 11, fill: '#9CA3AF' }} axisLine={false} tickLine={false} />
               <Tooltip formatter={v => [`$${v.toLocaleString('es-MX')}`, 'MRR']} />
-              <Area type="monotone" dataKey="mrr" stroke="#C49A2A" strokeWidth={2} fill="url(#mrrGrad)" />
+              <Area type="monotone" dataKey="mrr" stroke="#4F7C44" strokeWidth={2} fill="url(#mrrGrad)" />
             </AreaChart>
           </ResponsiveContainer>
         </div>
@@ -156,12 +156,12 @@ export default function Dashboard() {
           <p className="text-xs text-cs-muted mb-4">Promedio del mes</p>
           <ResponsiveContainer width="100%" height={180}>
             <BarChart data={disciplinaData} layout="vertical">
-              <XAxis type="number" domain={[0, 100]} tick={{ fontSize: 10, fill: '#8C8C8C' }} axisLine={false} tickLine={false} tickFormatter={v => `${v}%`} />
-              <YAxis type="category" dataKey="name" tick={{ fontSize: 10, fill: '#8C8C8C' }} axisLine={false} tickLine={false} width={60} />
+              <XAxis type="number" domain={[0, 100]} tick={{ fontSize: 10, fill: '#9CA3AF' }} axisLine={false} tickLine={false} tickFormatter={v => `${v}%`} />
+              <YAxis type="category" dataKey="name" tick={{ fontSize: 10, fill: '#9CA3AF' }} axisLine={false} tickLine={false} width={60} />
               <Tooltip formatter={v => [`${v}%`, 'Ocupación']} />
               <Bar dataKey="occ" radius={4}>
                 {disciplinaData.map((d, i) => (
-                  <Cell key={i} fill={d.occ >= 80 ? '#5E8A6E' : d.occ >= 65 ? '#C49A2A' : '#C25C6E'} />
+                  <Cell key={i} fill={d.occ >= 80 ? '#3E6335' : d.occ >= 65 ? '#4F7C44' : '#B34C60'} />
                 ))}
               </Bar>
             </BarChart>
@@ -187,7 +187,7 @@ export default function Dashboard() {
               {atRisk.map(c => (
                 <div key={c.id} className="flex items-center justify-between py-2 border-b border-cs-border last:border-0">
                   <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-full bg-cs-cream-dk flex items-center justify-center text-xs font-semibold text-cs-charcoal">
+                    <div className="w-8 h-8 rounded-full bg-cs-cream flex items-center justify-center text-xs font-semibold text-cs-charcoal">
                       {c.nombre?.[0]?.toUpperCase()}
                     </div>
                     <div>

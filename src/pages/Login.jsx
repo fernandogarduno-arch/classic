@@ -12,92 +12,110 @@ export default function Login() {
 
   async function handleSubmit(e) {
     e.preventDefault()
-    setLoading(true)
-    setError('')
+    setLoading(true); setError('')
     const { error } = await signIn(email, password)
     if (error) setError('Correo o contraseña incorrectos.')
     setLoading(false)
   }
 
   return (
-    <div className="min-h-screen flex" style={{ backgroundColor: '#F2F4F3' }}>
+    <div className="min-h-screen flex">
       {/* Panel izquierdo */}
-      <div className="hidden lg:flex lg:w-1/2 flex-col justify-between p-16" style={{ backgroundColor: '#1a1a2e' }}>
-        <div>
-          <div className="flex items-center gap-3 mb-16">
-            <div className="w-10 h-10 rounded-lg flex items-center justify-center" style={{ backgroundColor: '#4A6741' }}>
-              <span className="font-display text-white text-xl font-bold">C</span>
-            </div>
-            <span className="font-display text-white text-2xl tracking-wide">Classic Studio</span>
+      <div className="hidden lg:flex lg:w-5/12 flex-col justify-between p-14"
+        style={{ backgroundColor: '#15172B' }}>
+        <div className="flex items-center gap-3">
+          <div className="w-9 h-9 rounded-lg flex items-center justify-center"
+            style={{ background: 'linear-gradient(135deg, #4F7C44, #3E6335)' }}>
+            <span className="font-display text-white font-bold" style={{ fontSize: 17 }}>C</span>
           </div>
-          <h1 className="font-display text-white text-5xl leading-tight mb-6">
-            El centro de<br />
-            <span style={{ color: '#6B9460' }}>control total</span><br />
-            de tu estudio.
+          <span className="font-display text-white tracking-wide" style={{ fontSize: 18 }}>Classic Studio</span>
+        </div>
+
+        <div>
+          <p className="label-caps mb-6" style={{ color: 'rgba(226,232,223,0.35)' }}>
+            Plataforma de administración
+          </p>
+          <h1 className="font-display text-white leading-tight mb-5" style={{ fontSize: 44, letterSpacing: '-0.02em' }}>
+            Control total<br />
+            <span style={{ color: '#6B9460' }}>de tu estudio</span><br />
+            en un solo lugar.
           </h1>
-          <p className="text-base leading-relaxed max-w-sm" style={{ color: 'rgba(255,255,255,0.4)' }}>
-            Gestiona clientes, agenda, instructoras, nómina y cumplimiento desde un solo lugar.
+          <p className="leading-relaxed" style={{ color: 'rgba(226,232,223,0.4)', fontSize: 14, maxWidth: 320 }}>
+            Clientes, agenda, instructoras, nómina y cumplimiento gestionados desde una sola plataforma.
           </p>
         </div>
-        <div className="grid grid-cols-3 gap-6">
-          {['Clientes activos','Ocupación prom.','Churn rate'].map(s => (
-            <div key={s} className="rounded-xl p-4" style={{ border: '1px solid rgba(255,255,255,0.08)' }}>
-              <p className="font-display text-2xl" style={{ color: '#6B9460' }}>—</p>
-              <p className="text-xs mt-1" style={{ color: 'rgba(255,255,255,0.35)' }}>{s}</p>
+
+        <div className="grid grid-cols-3 gap-4">
+          {['Clientes activos', 'Ocupación prom.', 'Churn rate'].map(s => (
+            <div key={s} className="rounded-xl p-4"
+              style={{ border: '1px solid rgba(255,255,255,0.07)', backgroundColor: 'rgba(255,255,255,0.03)' }}>
+              <p className="font-display" style={{ color: '#6B9460', fontSize: 24 }}>—</p>
+              <p style={{ color: 'rgba(226,232,223,0.3)', fontSize: 11, marginTop: 4 }}>{s}</p>
             </div>
           ))}
         </div>
       </div>
 
       {/* Panel derecho */}
-      <div className="flex-1 flex items-center justify-center p-8">
-        <div className="w-full max-w-md">
-          <div className="lg:hidden flex items-center gap-3 mb-10">
-            <div className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ backgroundColor: '#1a1a2e' }}>
-              <span className="font-display text-white text-lg font-bold">C</span>
+      <div className="flex-1 flex items-center justify-center p-8" style={{ backgroundColor: '#F5F7F5' }}>
+        <div className="w-full max-w-sm">
+          {/* Logo mobile */}
+          <div className="lg:hidden flex items-center gap-2.5 mb-10">
+            <div className="w-8 h-8 rounded-lg flex items-center justify-center"
+              style={{ backgroundColor: '#15172B' }}>
+              <span className="font-display text-white font-bold" style={{ fontSize: 15 }}>C</span>
             </div>
-            <span className="font-display text-cs-charcoal text-xl">Classic Studio</span>
+            <span className="font-display text-cs-charcoal" style={{ fontSize: 18 }}>Classic Studio</span>
           </div>
 
-          <h2 className="font-display text-3xl text-cs-charcoal mb-1">Bienvenido de vuelta</h2>
-          <p className="text-sm text-cs-muted mb-8">Accede con tu cuenta del equipo</p>
+          <h2 className="font-display mb-1" style={{ fontSize: 30, color: '#111827', letterSpacing: '-0.02em' }}>
+            Bienvenido
+          </h2>
+          <p className="text-sm mb-8" style={{ color: '#9CA3AF' }}>Ingresa con tu cuenta del equipo</p>
 
           {error && (
-            <div className="flex items-center gap-2 rounded-lg px-4 py-3 mb-6 text-sm"
-              style={{ backgroundColor: '#FEF2F2', border: '1px solid #FECACA', color: '#B91C1C' }}>
-              <AlertCircle size={16} />
+            <div className="flex items-center gap-2 rounded-lg px-4 py-3 mb-5 text-sm"
+              style={{ backgroundColor: '#FEF2F2', border: '1px solid #FECACA', color: '#991B1B' }}>
+              <AlertCircle size={15} />
               {error}
             </div>
           )}
 
-          <form onSubmit={handleSubmit} className="space-y-5">
+          <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-xs font-medium text-cs-charcoal mb-1.5">Correo electrónico</label>
+              <label className="block mb-1.5" style={{ fontSize: 12, fontWeight: 500, color: '#4B5563' }}>
+                Correo electrónico
+              </label>
               <input type="email" className="input" placeholder="hola@classicstudio.mx"
                 value={email} onChange={e => setEmail(e.target.value)} required />
             </div>
             <div>
-              <label className="block text-xs font-medium text-cs-charcoal mb-1.5">Contraseña</label>
+              <label className="block mb-1.5" style={{ fontSize: 12, fontWeight: 500, color: '#4B5563' }}>
+                Contraseña
+              </label>
               <div className="relative">
                 <input type={showPass ? 'text' : 'password'} className="input pr-10"
                   placeholder="••••••••" value={password}
                   onChange={e => setPassword(e.target.value)} required />
                 <button type="button" onClick={() => setShowPass(v => !v)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-cs-muted hover:text-cs-charcoal">
-                  {showPass ? <EyeOff size={16} /> : <Eye size={16} />}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 transition-colors"
+                  style={{ color: '#9CA3AF' }}>
+                  {showPass ? <EyeOff size={15} /> : <Eye size={15} />}
                 </button>
               </div>
             </div>
+
             <button type="submit" disabled={loading}
-              className="w-full text-white py-3 rounded-lg font-medium text-sm transition-all disabled:opacity-50 flex items-center justify-center gap-2"
-              style={{ backgroundColor: '#4A6741' }}>
+              className="w-full py-2.5 rounded-lg font-medium text-white flex items-center justify-center gap-2 transition-all"
+              style={{ backgroundColor: loading ? '#6B9460' : '#3E6335', fontSize: 14,
+                boxShadow: '0 1px 3px rgba(62,99,53,0.3)', letterSpacing: '0.01em' }}>
               {loading && <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />}
               {loading ? 'Verificando…' : 'Ingresar'}
             </button>
           </form>
 
-          <p className="text-center text-xs text-cs-muted mt-8">
-            ¿Problemas para acceder? Contacta al administrador.
+          <p className="text-center mt-8" style={{ fontSize: 12, color: '#9CA3AF' }}>
+            ¿Problemas de acceso? Contacta al administrador.
           </p>
         </div>
       </div>

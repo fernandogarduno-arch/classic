@@ -89,7 +89,7 @@ export default function Finanzas() {
                   <span className="text-xs font-medium text-cs-muted">{e.pct}%</span>
                 </div>
                 <div className="h-1.5 bg-cs-cream rounded-full overflow-hidden">
-                  <div className="h-full bg-cs-gold rounded-full" style={{ width: `${e.pct}%` }} />
+                  <div className="h-full bg-cs-olive rounded-full" style={{ width: `${e.pct}%` }} />
                 </div>
                 <p className="text-xs text-cs-muted mt-0.5">${e.monto.toLocaleString('es-MX')}</p>
               </div>
