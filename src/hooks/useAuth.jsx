@@ -4,19 +4,35 @@ import { supabase } from '../lib/supabase'
 const AuthContext = createContext(null)
 
 export function AuthProvider({ children }) {
-  const [session, setSession]   = useState(undefined) // undefined = loading
-  const [perfil, setPerfil]     = useState(null)
+  const [session, setSession] = useState(undefined)
+  const [perfil, setPerfil]   = useState(null)
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    // Obtener sesión inicial
+    supabase.auth.getSession().then(({ data: { session }, error }) => {
+      if (error || !session) {
+        setSession(null)
+        return
+      }
       setSession(session)
-      if (session) fetchPerfil(session.user.id)
+      fetchPerfil(session.user.id)
     })
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_e, session) => {
+
+    // Escuchar cambios de sesión (incluyendo refresh automático)
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      if (event === 'TOKEN_REFRESHED') {
+        setSession(session)
+        return
+      }
+      if (event === 'SIGNED_OUT' || !session) {
+        setSession(null)
+        setPerfil(null)
+        return
+      }
       setSession(session)
-      if (session) fetchPerfil(session.user.id)
-      else setPerfil(null)
+      if (session?.user?.id) fetchPerfil(session.user.id)
     })
+
     return () => subscription.unsubscribe()
   }, [])
 
@@ -34,6 +50,7 @@ export function AuthProvider({ children }) {
   }
 
   async function signOut() {
+    setPerfil(null)
     return supabase.auth.signOut()
   }
 
