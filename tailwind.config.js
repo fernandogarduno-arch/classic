@@ -5,17 +5,31 @@ export default {
     extend: {
       colors: {
         cs: {
-          charcoal:  '#1C1C1E',
-          gold:      '#C49A2A',
-          'gold-lt': '#E8C84A',
-          cream:     '#F5F0E8',
-          'cream-dk':'#EDE6D8',
-          forest:    '#2C3E2D',
-          sage:      '#5E8A6E',
-          rose:      '#C25C6E',
-          muted:     '#8C8C8C',
-          border:    '#E2D9CC',
-          surface:   '#FEFCF8',
+          // Fondos
+          bg:        '#F2F4F3',      // fondo general — casi blanco verdoso
+          surface:   '#FFFFFF',      // cards
+          sidebar:   '#1a1a2e',      // sidebar oscuro
+          'sidebar-lt': '#242444',   // hover sidebar
+
+          // Textos
+          charcoal:  '#1C2526',      // texto principal
+          muted:     '#6B7280',      // texto secundario
+          'on-dark': '#E8EDE9',      // texto sobre sidebar
+
+          // Acento
+          olive:     '#4A6741',      // verde oliva principal
+          'olive-lt':'#6B9460',      // hover
+          'olive-bg':'#EEF3ED',      // fondo suave oliva
+
+          // Bordes y superficies
+          border:    '#DDE3DE',
+          cream:     '#F2F4F3',
+          'cream-dk':'#E5EBE6',
+
+          // Alertas
+          rose:      '#B85C6E',
+          gold:      '#B8962E',
+          'gold-lt': '#D4AF42',
         },
       },
       fontFamily: {
